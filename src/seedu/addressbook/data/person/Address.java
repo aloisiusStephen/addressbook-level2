@@ -16,6 +16,7 @@ public class Address {
     private final Block block;
     private final Street street;
     private final Unit unit;
+    private final PostalCode postalCode;
     private boolean isPrivate;
 
     /**
@@ -33,6 +34,7 @@ public class Address {
         this.block = new Block(addressSections[0],isPrivate);
         this.street = new Street(addressSections[1],isPrivate);
         this.unit = new Unit(addressSections[2],isPrivate);
+        this.postalCode = new PostalCode(addressSections[3],isPrivate);
     }
 
 
