@@ -15,11 +15,9 @@ public class Block {
     public Block(String block, boolean isPrivate) {
         this.value = block;
         this.isPrivate = isPrivate;
-        
     }
 
     public String getBlock(){
-    return value;
-
+        return value;
     }
 }

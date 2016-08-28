@@ -14,6 +14,6 @@ public class Street {
     }
 
     public String getStreet(){
-    return value;
+        return value;
     }
 }
