@@ -14,7 +14,7 @@ public class Address {
 
     public final String value;
     private final Block block;
-
+    private final Street street;
     private boolean isPrivate;
 
     /**
@@ -30,7 +30,7 @@ public class Address {
         this.value = address;
         String[] addressSections = address.split(", ");
         this.block = new Block(addressSections[0],isPrivate);
-        
+        this.street = new Street(addressSections[1],isPrivate);        
     }
 
 
