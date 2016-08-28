@@ -13,6 +13,8 @@ public class Address {
     public static final String ADDRESS_VALIDATION_REGEX = ".+";
 
     public final String value;
+    private final Block block;
+
     private boolean isPrivate;
 
     /**
@@ -26,10 +28,14 @@ public class Address {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
         this.value = address;
+        String[] addressSections = address.split(", ");
+        this.block = new Block(addressSections[0],isPrivate);
+        
     }
 
+
     /**
-     * Returns true if a given string is a valid person email.
+     * Returns true if a given string is a valid person address.
      */
     public static boolean isValidAddress(String test) {
         return test.matches(ADDRESS_VALIDATION_REGEX);
