@@ -4,7 +4,7 @@
 package seedu.addressbook.data.person;
 
 /**
- * Represents the Block of a Person's address the address book.
+ * Represents the Block of a Person's address in the address book.
  *
  */
 public class Block {
