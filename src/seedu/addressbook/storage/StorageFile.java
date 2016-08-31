@@ -43,6 +43,15 @@ public class StorageFile {
         }
     }
 
+    /**
+     * Signals that the storage file has been deleted.
+     */
+    public static class StorageFileDeletionException extends Exception {
+        public StorageFileDeletionException(String message) {
+            super(message);
+        }
+    }
+    
     private final JAXBContext jaxbContext;
 
     public final Path path;
@@ -79,6 +88,18 @@ public class StorageFile {
     }
 
     /**
+     * Throws exception if storage file was deleted
+     */
+    public void checkStorageFileDeletion() throws StorageFileDeletionException {
+        final File storageFile = new File(DEFAULT_STORAGE_FILEPATH);
+        if(!storageFile.isFile()){
+            throw new StorageFileDeletionException("WARNING : Storage file has been deleted");
+        }
+        
+        return;
+    }
+    
+    /**
      * Saves all data to this storage file.
      *
      * @throws StorageOperationException if there were errors converting and/or storing data to file.
@@ -90,11 +111,12 @@ public class StorageFile {
          */
         try (final Writer fileWriter =
                      new BufferedWriter(new FileWriter(path.toFile()))) {
-
+            
             final AdaptedAddressBook toSave = new AdaptedAddressBook(addressBook);
             final Marshaller marshaller = jaxbContext.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
             marshaller.marshal(toSave, fileWriter);
+
 
         } catch (IOException ioe) {
             throw new StorageOperationException("Error writing to file: " + path);

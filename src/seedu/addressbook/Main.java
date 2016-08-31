@@ -80,6 +80,11 @@ public class Main {
         Command command;
         do {
             String userCommandText = ui.getUserCommand();
+            try {
+                storage.checkStorageFileDeletion();
+            } catch (StorageFileDeletionException e) {
+                ui.showToUser(e.getMessage());
+            }
             command = new Parser().parseCommand(userCommandText);
             CommandResult result = executeCommand(command);
             recordResult(result);
@@ -108,7 +113,7 @@ public class Main {
             CommandResult result = command.execute();
             storage.save(addressBook);
             return result;
-        } catch (Exception e) {
+        }  catch (Exception e) {
             ui.showToUser(e.getMessage());
             throw new RuntimeException(e);
         }
