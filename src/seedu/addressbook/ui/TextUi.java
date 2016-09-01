@@ -17,12 +17,6 @@ import java.util.Scanner;
  */
 public class TextUi {
 
-    /** A decorative prefix added to the beginning of lines printed by AddressBook */
-    private static final String LINE_PREFIX = "|| ";
-
-    /** A platform independent line separator. */
-    private static final String LS = System.lineSeparator();
-
     private static final String DIVIDER = "===================================================";
 
     /** Format of indexed list item */
@@ -37,12 +31,14 @@ public class TextUi {
 
     private final Scanner in;
     private final PrintStream out;
+    private static Formatter formatter;
 
     public TextUi(){
         this(System.in, System.out);
     }
 
     public TextUi(InputStream in, PrintStream out) {
+        formatter =  new Formatter();
         this.in = new Scanner(in);
         this.out = out;
     }
@@ -75,7 +71,7 @@ public class TextUi {
      * @return command (full line) entered by the user
      */
     public String getUserCommand() {
-        out.print(LINE_PREFIX + "Enter command: ");
+        out.print(formatter.formatDisplay("Enter command: "));
         String fullInputLine = in.nextLine();
 
         // silently consume all ignored lines
@@ -112,7 +108,7 @@ public class TextUi {
     /** Shows message(s) to the user */
     public void showToUser(String... message) {
         for (String m : message) {
-            out.println(LINE_PREFIX + m.replace("\n", LS + LINE_PREFIX));
+            out.println(formatter.formatDisplay(m));
         }
     }
 
@@ -147,22 +143,13 @@ public class TextUi {
 
     /** Formats a list of strings as a viewable indexed list. */
     private static String getIndexedListForViewing(List<String> listItems) {
-        final StringBuilder formatted = new StringBuilder();
+        final StringBuilder formattedString = new StringBuilder();
         int displayIndex = 0 + DISPLAYED_INDEX_OFFSET;
         for (String listItem : listItems) {
-            formatted.append(getIndexedListItem(displayIndex, listItem)).append("\n");
+            formattedString.append(formatter.formatIndexedListItem(displayIndex, listItem)).append("\n");
             displayIndex++;
         }
-        return formatted.toString();
-    }
-
-    /**
-     * Formats a string as a viewable indexed list item.
-     *
-     * @param visibleIndex visible index for this listing
-     */
-    private static String getIndexedListItem(int visibleIndex, String listItem) {
-        return String.format(MESSAGE_INDEXED_LIST_ITEM, visibleIndex, listItem);
+        return formattedString.toString();
     }
 
 }
