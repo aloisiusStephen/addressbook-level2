@@ -7,12 +7,12 @@ import seedu.addressbook.data.person.Person;
 public class Tagging {
 
     private TaggingAction action ;
-    private String personName;
-    private String tagDescription;
+    private Person person;
+    private Tag tag;
 
     public Tagging(Person person, Tag tag, TaggingAction action ){
-        this.personName = person.getName().toString();
-        this.tagDescription = tag.toString();
+        this.person = person;
+        this.tag = tag;
         this.action = action;
     }
 
@@ -25,7 +25,7 @@ public class Tagging {
             actionIndicator = "-";            
         }
 
-        return actionIndicator + " " + personName + " " + tagDescription;
+        return actionIndicator + " " + person.getName().toString() + " " + tag.toString();
     }
 
 
