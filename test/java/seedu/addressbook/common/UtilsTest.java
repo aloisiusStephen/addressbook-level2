@@ -32,11 +32,14 @@ public class UtilsTest {
     
     @Test
     public void allUnique_returnsTrue() {
-        List<String> testList = Arrays.asList("one", "two","three");
-        assertTrue(utils.elementsAreUnique(testList));
-        
-        
+        List<String> testList = Arrays.asList("one", "two", "three");
+        assertTrue(utils.elementsAreUnique(testList)); 
     }
     
+    @Test
+    public void allUnique_returnsFalse() {
+        List<String> testList = Arrays.asList("one", "two", "two");
+        assertFalse(utils.elementsAreUnique(testList)); 
+    }
     
 }
