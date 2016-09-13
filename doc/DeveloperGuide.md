@@ -24,6 +24,30 @@
 * As a user, I can add multiple phone numbers for one person, so that I can save a person's home/ work/ handphone /etc. contact numbers.
 * As a user, I can view a list of recently added persons.
 
+### Use Case
+Software System: AddressBook
+Use case: UC01 - Rename tag
+Actor: User
+MSS:
+	1. User enters command to rename tag "A" to "B".
+	2. AddressBook requests for confirmation of change from "A" to "B".
+	3. User confirms change.
+	4. AddressBook renames tag from "A" to "B" and displays the change.
+		Use case ends.
+
+Extensions:
+	1a. User enters command to rename tag without further input
+		1a1. AddressBook prints help message for rename tag command.
+		1a2. User enters new command.
+	Steps 1a1-1a2 are repeated until the command is recognized.
+	Use case resumes from step 2.
+
+	2a. AddressBook detects that tag "A" does not exist
+		2a1. AddressBook warns that tag "A" does not exist.
+		2a2. User enters new command.
+	Steps 2a1-2a2 are repeated until the command is recognized.
+	Use case resumes from step 2.
+
 ## Testing
 
 ### System tests
