@@ -48,6 +48,13 @@ Extensions:
 	Steps 2a1-2a2 are repeated until the command is recognized.
 	Use case resumes from step 2.
 
+### Non-Functional Requirements
+*The storage should allow for storage of at least 500 contacts
+*All commands should take less than 2 seconds to execute
+*Data of Addressbook should be secure
+*Addressbook should be able to run on all mobile devices as well
+
+
 ## Testing
 
 ### System tests
