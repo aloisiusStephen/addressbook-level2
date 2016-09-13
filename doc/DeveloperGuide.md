@@ -19,6 +19,11 @@
 ## Design
 <img src="images/mainClassDiagram.png"/>
 
+### User Stories
+* As a user, I can assign persons into a group in the addressbook, so that I can search based on the group.
+* As a user, I can add multiple phone numbers for one person, so that I can save a person's home/ work/ handphone /etc. contact numbers.
+* As a user, I can view a list of recently added persons.
+
 ## Testing
 
 ### System tests
